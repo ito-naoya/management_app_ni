@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<%@ page import="java.util.*"%>
 <%@ page import="beans.Employee"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +19,29 @@
 
 	<form action="create" method="POST">
 	
-		<label for="employeeName">従業員名</label> 
+		<label for="employeeName">
+			従業員名
+		</label>
+		 
 		<input type="text" name="employeeName">
+		
 		<br>
 		
-		<label for="password">パスワード</label> 
+		<label for="password">
+			パスワード
+		</label>
+		 
 		<input type="password" name="password">
+		
 		<br> 
 		
-		<label for="department">所属部署</label>
+		<label for="department">
+			所属部署
+		</label>
 		
 		<select name="department">
 		
-		<%
+			<%
 			ArrayList<String> departmentList = (ArrayList<String>) request.getAttribute("departmentList");
 			%>
 			
@@ -38,15 +49,22 @@
 			for (String department : departmentList) {
 			%>
 
-			<option><%=department%></option>
+			<option>
+				<%=department%>
+			</option>
 
 			<%
 			}
 			%>
 
 		</select> 
+		
 		<br> 
-		<label for="position">役職</label>
+		
+		<label for="position">
+			役職
+		</label>
+		
 		<select name="position">
 
 			<%
@@ -57,17 +75,22 @@
 			for (String position : positionList) {
 			%>
 
-			<option><%=position%></option>
+			<option>
+				<%=position%>
+			</option>
 
 			<%
 			}
 			%>
 
 		</select> 
+		
 		<br>
+		
 	<input type="submit" value="追加する">
 	
 	</form>
 
 </body>
+
 </html>
