@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.employeeTable {
+	text-align: center;
+	margin-top: 20px;
+}
+
+h1{
+	text-align: center;
+}
+
+h3{
+	margin-top: 0px;
+}
+
+
+.logoutBtn {
+	background-color: red;
+	color: white;
+	border: solid 1px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.newBtn {
+	background-color: limegreen;
+	color: white;
+	border: solid 1px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.employeeDiv {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.employeeListHeader {
+	margin-bottom: 0px;
+}
+
+.myInfoHeader{
+	margin-bottom: 0px;
+}
+
+.employeeOptionBtn {
+	display: flex;
+	margin-top: 10px;
+	justify-content: center;
+	width: 100%;
+}
+
+.employeeListDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+.myEmployeeInfoDiv {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	
+}

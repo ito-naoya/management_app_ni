@@ -1,0 +1,44 @@
+
+package model;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import dao.GeneralDao;
+
+public class EmployeeDelete {
+
+	private static final String DELETE_EMPLOYEE_SQL = "DELETE "
+			+ "FROM "
+			+ "employeeTable "
+			+ "WHERE "
+			+ "account_Id = ?";
+	
+	private static final String DELETE_ACCOUNT_SQL = "DELETE "
+			+ "FROM "
+			+ "accountTable "
+			+ "WHERE "
+			+ "accountId = ?";
+
+	public static int employeeDelete(Integer accountId) throws ClassNotFoundException, SQLException {
+
+		ArrayList<Object> paramList = new ArrayList<Object>() {
+			{				
+				add(accountId);
+			}
+		};
+
+		int deleteNum;
+		
+		try (Connection conn = DbConnection.getConnection();){
+			
+			GeneralDao.executeUpdate(conn, DELETE_EMPLOYEE_SQL, paramList);
+			deleteNum = GeneralDao.executeUpdate(conn, DELETE_ACCOUNT_SQL, paramList);
+			
+		}
+
+		return deleteNum;
+	}
+
+}
