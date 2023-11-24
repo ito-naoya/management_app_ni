@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.Account;
 import dao.GeneralDao;
 
 public class EmployeeUpdate {
@@ -38,32 +39,32 @@ public class EmployeeUpdate {
 			+ "WHERE "
 			+ "accountId = ?";
 
-	public static int employeeUpdate(int accountId, String department, String position, String employeeName)
+	public static int employeeUpdate(Account updateAccount)
 			throws ClassNotFoundException, SQLException {
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
-			{				
-			add(department);
+			{
+				add(updateAccount.getDepartment());
 			}
 		};
 
 		ArrayList<Object> positionParamList = new ArrayList<Object>() {
-			{				
-				add(position);
+			{
+				add(updateAccount.getPosition());
 			}
 		};
 
-		ArrayList<Object> AccountparamList = new ArrayList<Object>() {
-			{				
-				add(employeeName);
-				add(accountId);
+		ArrayList<Object> accountParamList = new ArrayList<Object>() {
+			{
+				add(updateAccount.getEmployeeName());
+				add(updateAccount.getAccountId());
 			}
 		};
-		
+
 		int updateNum = 0;
 
 		try (Connection conn = DbConnection.getConnection();) {
-			
+
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
 			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITION_ID_SQL, positionParamList);
 
@@ -82,17 +83,17 @@ public class EmployeeUpdate {
 
 			}
 
-			ArrayList<Object> updateParamList = new ArrayList<Object>();
+			ArrayList<Object> employeeParamList = new ArrayList<Object>();
 
 			if (departmentId != 0 && positionId != 0) {
 
-				updateParamList.add(departmentId);
-				updateParamList.add(positionId);
-				updateParamList.add(accountId);
-				
-				GeneralDao.executeUpdate(conn, UPDATE_EMPLOYEE_SQL, updateParamList);
-				updateNum = GeneralDao.executeUpdate(conn, UPDATE_ACCOUNT_SQL, AccountparamList);
-				
+				employeeParamList.add(departmentId);
+				employeeParamList.add(positionId);
+				employeeParamList.add(updateAccount.getAccountId());
+
+				GeneralDao.executeUpdate(conn, UPDATE_EMPLOYEE_SQL, employeeParamList);
+				updateNum = GeneralDao.executeUpdate(conn, UPDATE_ACCOUNT_SQL, accountParamList);
+
 			}
 
 		}

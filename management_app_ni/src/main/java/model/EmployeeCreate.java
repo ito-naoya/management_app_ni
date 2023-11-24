@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import beans.Account;
 import dao.GeneralDao;
 
 public class EmployeeCreate {
@@ -43,33 +44,33 @@ public class EmployeeCreate {
 			+ "VALUES "
 			+ "(?, ?, ?)";
 
-	public static int employeeCreate(String employeeName, String password, String department, String position)
+	public static int employeeCreate(Account newAccount)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
-		String hashedGenerator = HashGenerator.generateHash(password);
+		String hashedGenerator = HashGenerator.generateHash(newAccount.getPassword());
 
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
-				add(employeeName);
+				add(newAccount.getEmployeeName());
 				add(hashedGenerator);
 			}
 		};
 
 		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
-				add(employeeName);
+				add(newAccount.getEmployeeName());
 			}
 		};
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
-				add(department);
+				add(newAccount.getDepartment());
 			}
 		};
 
 		ArrayList<Object> positionParamList = new ArrayList<Object>() {
 			{
-				add(position);
+				add(newAccount.getPosition());
 			}
 		};
 

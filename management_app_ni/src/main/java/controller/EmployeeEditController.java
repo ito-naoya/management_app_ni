@@ -71,14 +71,16 @@ public class EmployeeEditController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		int accountId = Integer.parseInt(req.getParameter("accountId"));
 		String department = req.getParameter("department");
 		String position = req.getParameter("position");
 		String employeeName = req.getParameter("employeeName");
-		int accountId = Integer.parseInt(req.getParameter("accountId"));
+		
+		Account updateAccount = new Account(accountId, department, position, employeeName);
 
 		try {
 
-			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(accountId, department, position, employeeName);
+			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(updateAccount);
 			req.setAttribute("employeeUpdateMsg", employeeUpdateNum + "件の従業員情報を更新しました。");
 
 		} catch (ClassNotFoundException | SQLException e) {

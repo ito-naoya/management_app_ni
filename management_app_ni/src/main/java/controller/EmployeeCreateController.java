@@ -68,10 +68,12 @@ public class EmployeeCreateController extends HttpServlet {
 		String password = req.getParameter("password");
 		String department = req.getParameter("department");
 		String position = req.getParameter("position");
+		
+		Account newAccount = new Account(employeeName, password, department, position);
 
 		try {
 
-			int createNum = EmployeeCreate.employeeCreate(employeeName, password, department, position);
+			int createNum = EmployeeCreate.employeeCreate(newAccount);
 			req.setAttribute("employeeCreateMsg", createNum + "件の従業員情報を追加しました。");
 
 		} catch (ClassNotFoundException | SQLException e) {
