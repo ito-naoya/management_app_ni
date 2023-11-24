@@ -48,14 +48,14 @@ public class EmployeeCreate {
 
 		String hashedGenerator = HashGenerator.generateHash(password);
 
-		ArrayList<Object> createParamList = new ArrayList<Object>() {
+		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
 				add(employeeName);
 				add(hashedGenerator);
 			}
 		};
 
-		ArrayList<Object> accountParamList = new ArrayList<Object>() {
+		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
 				add(employeeName);
 			}
@@ -75,8 +75,8 @@ public class EmployeeCreate {
 
 		try (Connection conn = DbConnection.getConnection();) {
 
-			GeneralDao.executeUpdate(conn, INSERT_ACCOUNT_SQL, createParamList);
-			ResultSet accountResult = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_ID_SQL, accountParamList);
+			GeneralDao.executeUpdate(conn, INSERT_ACCOUNT_SQL, accountParamList);
+			ResultSet accountResult = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_ID_SQL, employeeParamList);
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
 			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITIONID_SQL, positionParamList);
 
