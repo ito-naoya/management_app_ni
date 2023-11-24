@@ -28,7 +28,7 @@ public class EmployeeCertification {
 
 		String hashedPassword = HashGenerator.generateHash(password);
 
-		ArrayList<Object> paramList = new ArrayList<Object>() {
+		ArrayList<Object> loginParamList = new ArrayList<Object>() {
 			{
 				add(employeeName);
 				add(hashedPassword);
@@ -36,7 +36,7 @@ public class EmployeeCertification {
 		};
 
 		try (Connection conn = DbConnection.getConnection();
-				ResultSet result = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_SQL, paramList);) {
+				ResultSet result = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_SQL, loginParamList);) {
 
 			Account account = null;
 
