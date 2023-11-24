@@ -31,7 +31,7 @@ public class EmployeeCreate {
 			+ "WHERE "
 			+ "department = ?";
 
-	private static final String SELECT_POSITIONID_SQL = "SELECT "
+	private static final String SELECT_POSITION_ID_SQL = "SELECT "
 			+ "positionId "
 			+ "FROM "
 			+ "positionTable "
@@ -93,7 +93,7 @@ public class EmployeeCreate {
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
 
 			//新規社員の役職のIDを取得
-			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITIONID_SQL, positionParamList);
+			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITION_ID_SQL, positionParamList);
 
 			int accountId = 0;
 			int departmentId = 0;
