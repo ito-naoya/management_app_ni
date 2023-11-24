@@ -14,7 +14,8 @@ import jakarta.servlet.http.HttpSession;
 
 public class EmployeeCertification {
 
-	private static final String SELECT_ACCOUNT_SQL = "SELECT * "
+	private static final String SELECT_ACCOUNT_SQL = "SELECT "
+			+ "* "
 			+ "FROM "
 			+ "accountTable "
 			+ "WHERE "
