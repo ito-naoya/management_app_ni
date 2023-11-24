@@ -13,15 +13,22 @@ public class SetEmployeeList {
 	public static void setEmployeeList(HttpServletRequest req) throws ClassNotFoundException, SQLException{
 		
 		HttpSession session = req.getSession();
-		Account account = (Account) session.getAttribute("account");
 		
-		if (account != null) {
+		//ログイン中の社員をセッションから取得
+		Account loginAccount = (Account) session.getAttribute("account");
+		
+		
+		//ログインしている社員がいる？
+		if (loginAccount != null) {
 
-			Employee employee = SelectEmployee.selectByAccountId(account.getAccountId());
+			//ログインしている社員の情報を取得
+			Employee employee = SelectEmployee.selectByAccountId(loginAccount.getAccountId());
 			req.setAttribute("employee", employee);
 
+			//ログインしている社員の役職が係長 or 課長？
 			if (employee.getPosition().equals("課長") || employee.getPosition().equals("係長")) {
 
+				//社員データを取得
 				ArrayList<Employee> employeeList  = SelectEmployee.selectByDepartmentId(employee.getDepartmentId());
 				req.setAttribute("employeeList", employeeList);
 

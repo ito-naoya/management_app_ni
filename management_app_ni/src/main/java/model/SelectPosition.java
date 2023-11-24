@@ -23,6 +23,7 @@ public class SelectPosition {
 
 			while (result.next()) {
 
+				//役職データをリストに追加
 				positionList.add(result.getString("position"));
 
 			}

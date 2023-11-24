@@ -30,24 +30,32 @@ public class EmployeeEditController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
+		
+		//ログイン中のユーザーをセッションから取得
 		Account loginAccount = (Account) session.getAttribute("account");
 
+		//ログインしているユーザーがいる？
 		if (loginAccount == null) {
-
+			
+			//トップページへリダイレクト(ログインページ)
 			res.sendRedirect("top");
 
 		} else {
 
+			//編集対象の従業員のIDを取得
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
 
+				//編集対象の従業員情報を取得
 				Employee employee = SelectEmployee.selectByAccountId(accountId);
 				req.setAttribute("employee", employee);
 
+				//部署データを全て取得
 				ArrayList<String> departmentList = SelectDepartment.selectDepartmentAll();
 				req.setAttribute("departmentList", departmentList);
 
+				//役職データを全て取得
 				ArrayList<String> positionList = SelectPosition.selectPositionAll();
 				req.setAttribute("positionList", positionList);
 
@@ -71,15 +79,24 @@ public class EmployeeEditController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		//編集対象の社員のIDを取得
 		int accountId = Integer.parseInt(req.getParameter("accountId"));
+		
+		//変更後の所属部署を取得
 		String department = req.getParameter("department");
+		
+		//変更後の役職を取得
 		String position = req.getParameter("position");
+		
+		//変更後の社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
 		
+		//変更後の社員情報をnew
 		Account updateAccount = new Account(accountId, department, position, employeeName);
 
 		try {
-
+			
+			//社員情報の更新
 			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(updateAccount);
 			req.setAttribute("employeeUpdateMsg", employeeUpdateNum + "件の従業員情報を更新しました。");
 

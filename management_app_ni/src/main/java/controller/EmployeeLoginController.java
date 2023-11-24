@@ -23,11 +23,15 @@ public class EmployeeLoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		//ログインする社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
+		
+		//ログインする社員のパスワードを取得
 		String password = req.getParameter("password");
 
 		try {
 
+			//人事管理アプリにログイン
 			EmployeeCertification.login(req, employeeName, password);
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -44,6 +48,7 @@ public class EmployeeLoginController extends HttpServlet {
 
 		}
 
+		//トップエージにリダイレクト
 		res.sendRedirect("top");
 
 	}

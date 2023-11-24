@@ -47,10 +47,12 @@ public class SelectEmployee {
 
 		ArrayList<Object> paramList = new ArrayList<Object>() {
 			{				
+				//取得したい社員のIDをリストに追加
 				add(accountId);
 			}
 		};
 		
+		//emploeeをnullで初期化
 		Employee employee = null;
 
 		try (Connection conn = DbConnection.getConnection();
@@ -60,11 +62,22 @@ public class SelectEmployee {
 
 				employee = new Employee(
 
+						//社員のIDを取得
 						result.getInt("accountId"),
+						
+						//社員の名前を取得
 						result.getString("employeeName"),
+						
+						//社員の所属部署IDを取得
 						result.getInt("departmentId"),
+						
+						//社員の所属部署を取得
 						result.getString("department"),
+						
+						//社員の役職IDを取得
 						result.getInt("positionId"),
+						
+						//社員の役職を取得
 						result.getString("position"));
 			}
 
@@ -81,6 +94,7 @@ public class SelectEmployee {
 
 		ArrayList<Object> paramList = new ArrayList<Object>() {
 			{				
+				//取得したい所属部署IDをリストに追加
 				add(departmentId);
 			}
 		};
@@ -94,11 +108,22 @@ public class SelectEmployee {
 
 				Employee employee = new Employee(
 
+						//社員のIDを取得
 						result.getInt("accountId"),
+						
+						//社員の名前を取得
 						result.getString("employeeName"),
+						
+						//社員の所属部署IDを取得
 						result.getInt("departmentId"),
+						
+						//社員の所属部署を取得
 						result.getString("department"),
+						
+						//社員の役職IDを取得
 						result.getInt("positionId"),
+						
+						//社員の役職を取得
 						result.getString("position"));
 
 				employeeList.add(employee);

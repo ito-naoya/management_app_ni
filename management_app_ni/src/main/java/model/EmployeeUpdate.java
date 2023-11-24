@@ -44,19 +44,24 @@ public class EmployeeUpdate {
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
+				//更新後の所属部署をリストに追加
 				add(updateAccount.getDepartment());
 			}
 		};
 
 		ArrayList<Object> positionParamList = new ArrayList<Object>() {
 			{
+				//更新後の役職をリストに追加
 				add(updateAccount.getPosition());
 			}
 		};
 
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
+				//更新後の社員の名前をリストに追加
 				add(updateAccount.getEmployeeName());
+				
+				//更新対象の社員のIDをリストに追加
 				add(updateAccount.getAccountId());
 			}
 		};
@@ -65,20 +70,25 @@ public class EmployeeUpdate {
 
 		try (Connection conn = DbConnection.getConnection();) {
 
+			//更新後の所属部署の取得
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
+			
+			//更新後の役職の取得
 			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITION_ID_SQL, positionParamList);
 
 			int departmentId = 0;
 			int positionId = 0;
 
 			while (departmentResult.next()) {
-
+				
+				//更新後の所属部署のIDを取得
 				departmentId = departmentResult.getInt("departmentId");
 
 			}
 
 			while (positionResult.next()) {
 
+				//更新後の役職のIDを取得
 				positionId = positionResult.getInt("positionId");
 
 			}
@@ -87,10 +97,17 @@ public class EmployeeUpdate {
 
 			if (departmentId != 0 && positionId != 0) {
 
+				//更新後の所属部署のIDをリストに追加
 				employeeParamList.add(departmentId);
+				
+				//更新後の役職のIDをリストに追加
 				employeeParamList.add(positionId);
+				
+				//更新対象の社員のIDをリストに追加
 				employeeParamList.add(updateAccount.getAccountId());
 
+				
+				//社員情報を更新
 				GeneralDao.executeUpdate(conn, UPDATE_EMPLOYEE_SQL, employeeParamList);
 				updateNum = GeneralDao.executeUpdate(conn, UPDATE_ACCOUNT_SQL, accountParamList);
 

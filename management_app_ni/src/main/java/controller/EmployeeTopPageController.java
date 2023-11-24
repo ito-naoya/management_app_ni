@@ -24,7 +24,8 @@ public class EmployeeTopPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		try {
-
+			
+			//社員リストの取得とセット
 			SetEmployeeList.setEmployeeList(req);
 
 		} catch (ClassNotFoundException | SQLException e) {

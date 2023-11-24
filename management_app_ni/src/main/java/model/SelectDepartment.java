@@ -23,6 +23,7 @@ public class SelectDepartment {
 
 			while (result.next()) {
 
+				//所属部署データをリストに追加
 				departmentList.add(result.getString("department"));
 
 			}

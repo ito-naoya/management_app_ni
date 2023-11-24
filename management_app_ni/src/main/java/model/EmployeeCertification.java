@@ -26,11 +26,15 @@ public class EmployeeCertification {
 	public static void login(HttpServletRequest req, String employeeName, String password)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
+		//パスワードのハッシュ化
 		String hashedPassword = HashGenerator.generateHash(password);
 
 		ArrayList<Object> loginParamList = new ArrayList<Object>() {
 			{
+				//新規社員の名前をリストに追加
 				add(employeeName);
+
+				//新規社員のパスワードをリストに追加
 				add(hashedPassword);
 			}
 		};
@@ -38,12 +42,14 @@ public class EmployeeCertification {
 		try (Connection conn = DbConnection.getConnection();
 				ResultSet result = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_SQL, loginParamList);) {
 
+			//アカウント情報をNULLで初期化
 			Account account = null;
 
 			while (result.next()) {
 
 				account = new Account(
 
+						//ログインしたい社員のIDを取得
 						result.getInt("accountId")
 
 				);
@@ -54,6 +60,7 @@ public class EmployeeCertification {
 
 			if (account != null)
 
+				//ログインする社員のIDをセッションで管理
 				session.setAttribute("account", account);
 
 		}
