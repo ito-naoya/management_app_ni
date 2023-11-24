@@ -12,7 +12,7 @@ public class SelectEmployee {
 	
 	private static final String SELECT_EMPLOYEE_BASE_SQL = "SELECT "
 			+ "A1.accountId, "
-			+ "A1.accountName, "
+			+ "A1.employeeName, "
 			+ "D1.departmentId, "
 			+ "D1.department, "
 			+ "P1.positionId, "
@@ -61,7 +61,7 @@ public class SelectEmployee {
 				employee = new Employee(
 
 						result.getInt("accountId"),
-						result.getString("accountName"),
+						result.getString("employeeName"),
 						result.getInt("departmentId"),
 						result.getString("department"),
 						result.getInt("positionId"),
@@ -95,7 +95,7 @@ public class SelectEmployee {
 				Employee employee = new Employee(
 
 						result.getInt("accountId"),
-						result.getString("accountName"),
+						result.getString("employeeName"),
 						result.getInt("departmentId"),
 						result.getString("department"),
 						result.getInt("positionId"),

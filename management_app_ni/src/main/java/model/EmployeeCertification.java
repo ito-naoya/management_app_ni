@@ -19,18 +19,18 @@ public class EmployeeCertification {
 			+ "FROM "
 			+ "accountTable "
 			+ "WHERE "
-			+ "accountName = ? "
+			+ "employeeName = ? "
 			+ "AND "
 			+ "password = ?";
 
-	public static void login(HttpServletRequest req, String accountName, String password)
+	public static void login(HttpServletRequest req, String employeeName, String password)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
 		String hashedPassword = HashGenerator.generateHash(password);
 
 		ArrayList<Object> paramList = new ArrayList<Object>() {
 			{
-				add(accountName);
+				add(employeeName);
 				add(hashedPassword);
 			}
 		};

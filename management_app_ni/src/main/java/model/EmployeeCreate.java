@@ -12,7 +12,7 @@ public class EmployeeCreate {
 
 	private static final String INSERT_ACCOUNT_SQL = "INSERT INTO "
 			+ "accountTable "
-			+ "(accountName, password) "
+			+ "(employeeName, password) "
 			+ "VALUES "
 			+ "(?, ?) ";
 
@@ -21,7 +21,7 @@ public class EmployeeCreate {
 			+ "FROM "
 			+ "accountTable "
 			+ "WHERE "
-			+ "accountName = ?";
+			+ "employeeName = ?";
 
 	private static final String SELECT_DEPARTMENT_ID_SQL = "SELECT "
 			+ "departmentId "

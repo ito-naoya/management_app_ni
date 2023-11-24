@@ -34,11 +34,11 @@ public class EmployeeUpdate {
 	private static final String UPDATE_ACCOUNT_SQL = "UPDATE "
 			+ "accountTable "
 			+ "SET "
-			+ "accountName = ? "
+			+ "employeeName = ? "
 			+ "WHERE "
 			+ "accountId = ?";
 
-	public static int employeeUpdate(int accountId, String department, String position, String accountName)
+	public static int employeeUpdate(int accountId, String department, String position, String employeeName)
 			throws ClassNotFoundException, SQLException {
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
@@ -55,7 +55,7 @@ public class EmployeeUpdate {
 
 		ArrayList<Object> AccountparamList = new ArrayList<Object>() {
 			{				
-				add(accountName);
+				add(employeeName);
 				add(accountId);
 			}
 		};
