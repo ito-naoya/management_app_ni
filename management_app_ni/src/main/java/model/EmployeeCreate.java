@@ -108,14 +108,14 @@ public class EmployeeCreate {
 
 			while (departmentResult.next()) {
 
-				//新規社員の所属部署を取得
+				//新規社員の所属部署のIDを取得
 				departmentId = departmentResult.getInt("departmentId");
 
 			}
 
 			while (positionResult.next()) {
 
-				//新規社員の役職を取得
+				//新規社員の役職のIDを取得
 				positionId = positionResult.getInt("positionId");
 
 			}
