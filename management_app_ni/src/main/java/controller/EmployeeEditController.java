@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Account;
 import beans.Employee;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -31,23 +30,23 @@ public class EmployeeEditController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		
-		//ログイン中のユーザーをセッションから取得
-		Account loginAccount = (Account) session.getAttribute("account");
+		//ログイン中の社員をセッションから取得
+		Employee loginEmployee = (Employee) session.getAttribute("account");
 
-		//ログインしているユーザーがいる？
-		if (loginAccount == null) {
+		//ログインしている社員がいる？
+		if (loginEmployee == null) {
 			
 			//トップページへリダイレクト(ログインページ)
 			res.sendRedirect("top");
 
 		} else {
 
-			//編集対象の従業員のIDを取得
+			//編集対象の社員のIDを取得
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
 
-				//編集対象の従業員情報を取得
+				//編集対象の社員情報を取得
 				Employee employee = SelectEmployee.selectByAccountId(accountId);
 				req.setAttribute("employee", employee);
 
@@ -92,12 +91,12 @@ public class EmployeeEditController extends HttpServlet {
 		String employeeName = req.getParameter("employeeName");
 		
 		//変更後の社員情報をnew
-		Account updateAccount = new Account(accountId, department, position, employeeName);
+		Employee updateEmployee = new Employee(accountId, department, position, employeeName);
 
 		try {
 			
 			//社員情報の更新
-			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(updateAccount);
+			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(updateEmployee);
 			req.setAttribute("employeeUpdateMsg", employeeUpdateNum + "件の従業員情報を更新しました。");
 
 		} catch (ClassNotFoundException | SQLException e) {

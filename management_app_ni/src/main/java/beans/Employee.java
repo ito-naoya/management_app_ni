@@ -3,6 +3,7 @@ package beans;
 public class Employee {
 	private int accountId;
 	private String employeeName;
+	private String password;
 	private int departmentId;
 	private String department;
 	private int positionId;
@@ -12,6 +13,13 @@ public class Employee {
 
 	};
 	
+	
+	public Employee(int accountId) {
+		
+		this.accountId = accountId;
+		
+	};
+	
 	public Employee(int accountId, String employeeName, int departmentId, String department, int positionId, String position) {
 		this.accountId = accountId;
 		this.employeeName = employeeName;
@@ -19,6 +27,24 @@ public class Employee {
 		this.department = department;
 		this.positionId = positionId;
 		this.position = position;
+	}
+	
+	public Employee(String employeeName, String password, String department, String position) {
+		
+		this.employeeName = employeeName;
+		this.password = password;
+		this.department = department;
+		this.position = position;
+		
+	}
+
+	public Employee(int accountId, String department, String position, String employeeName) {
+		
+		this.accountId = accountId;
+		this.department = department;
+		this.position = position;
+		this.employeeName = employeeName;
+		
 	}
 	
 
@@ -44,6 +70,14 @@ public class Employee {
 		
 		this.employeeName = employeeName;
 		
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getDepartmentId() {

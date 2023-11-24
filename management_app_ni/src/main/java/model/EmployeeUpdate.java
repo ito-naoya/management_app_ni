@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Account;
+import beans.Employee;
 import dao.GeneralDao;
 
 public class EmployeeUpdate {
@@ -39,30 +39,30 @@ public class EmployeeUpdate {
 			+ "WHERE "
 			+ "accountId = ?";
 
-	public static int employeeUpdate(Account updateAccount)
+	public static int employeeUpdate(Employee updateEmployee)
 			throws ClassNotFoundException, SQLException {
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//更新後の所属部署をリストに追加
-				add(updateAccount.getDepartment());
+				add(updateEmployee.getDepartment());
 			}
 		};
 
 		ArrayList<Object> positionParamList = new ArrayList<Object>() {
 			{
 				//更新後の役職をリストに追加
-				add(updateAccount.getPosition());
+				add(updateEmployee.getPosition());
 			}
 		};
 
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
 				//更新後の社員の名前をリストに追加
-				add(updateAccount.getEmployeeName());
+				add(updateEmployee.getEmployeeName());
 				
 				//更新対象の社員のIDをリストに追加
-				add(updateAccount.getAccountId());
+				add(updateEmployee.getAccountId());
 			}
 		};
 
@@ -104,7 +104,7 @@ public class EmployeeUpdate {
 				employeeParamList.add(positionId);
 				
 				//更新対象の社員のIDをリストに追加
-				employeeParamList.add(updateAccount.getAccountId());
+				employeeParamList.add(updateEmployee.getAccountId());
 
 				
 				//社員情報を更新

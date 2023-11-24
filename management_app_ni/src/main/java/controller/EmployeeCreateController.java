@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Account;
+import beans.Employee;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -30,11 +30,11 @@ public class EmployeeCreateController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 
-		//ログイン中のユーザーをセッションから取得
-		Account loginAccount = (Account) session.getAttribute("account");
+		//ログイン中の社員をセッションから取得
+		Employee loginEmployee = (Employee) session.getAttribute("account");
 
-		//ログインしているユーザーがいる？
-		if (loginAccount == null) {
+		//ログインしている社員がいる？
+		if (loginEmployee == null) {
 
 			//トップページへリダイレクト(ログインページ)
 			res.sendRedirect("top");
@@ -70,25 +70,25 @@ public class EmployeeCreateController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		//新規従業員の名前を取得
+		//新規社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
 		
-		//新規従業員のパスワードを取得
+		//新規社員のパスワードを取得
 		String password = req.getParameter("password");
 		
-		//新規従業員の所属部署を取得
+		//新規社員の所属部署を取得
 		String department = req.getParameter("department");
 		
-		//新規従業員の役職を取得
+		//新規社員の役職を取得
 		String position = req.getParameter("position");
 
-		//新規アカウントをNEW
-		Account newAccount = new Account(employeeName, password, department, position);
+		//新規社員情報をNEW
+		Employee newEmployee = new Employee(employeeName, password, department, position);
 
 		try {
 
-			//新規アカウントを追加
-			int createNum = EmployeeCreate.employeeCreate(newAccount);
+			//新規社員を追加
+			int createNum = EmployeeCreate.employeeCreate(newEmployee);
 			req.setAttribute("employeeCreateMsg", createNum + "件の従業員情報を追加しました。");
 
 		} catch (ClassNotFoundException | SQLException e) {

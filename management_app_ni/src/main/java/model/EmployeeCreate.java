@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Account;
+import beans.Employee;
 import dao.GeneralDao;
 
 public class EmployeeCreate {
@@ -44,16 +44,16 @@ public class EmployeeCreate {
 			+ "VALUES "
 			+ "(?, ?, ?)";
 
-	public static int employeeCreate(Account newAccount)
+	public static int employeeCreate(Employee newEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
 		//パスワードのハッシュ化
-		String hashedGenerator = HashGenerator.generateHash(newAccount.getPassword());
+		String hashedGenerator = HashGenerator.generateHash(newEmployee.getPassword());
 
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
 				//新規社員の名前をリストに追加
-				add(newAccount.getEmployeeName());
+				add(newEmployee.getEmployeeName());
 
 				//新規社員のパスワードをリストに追加
 				add(hashedGenerator);
@@ -63,21 +63,21 @@ public class EmployeeCreate {
 		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
 				//新規社員の名前をリストに追加
-				add(newAccount.getEmployeeName());
+				add(newEmployee.getEmployeeName());
 			}
 		};
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//新規社員の所属部署をリストに追加
-				add(newAccount.getDepartment());
+				add(newEmployee.getDepartment());
 			}
 		};
 
 		ArrayList<Object> positionParamList = new ArrayList<Object>() {
 			{
 				//新規社員の役職をリストに追加
-				add(newAccount.getPosition());
+				add(newEmployee.getPosition());
 			}
 		};
 

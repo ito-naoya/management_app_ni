@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import beans.Account;
+import beans.Employee;
 import dao.GeneralDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -43,11 +43,11 @@ public class EmployeeCertification {
 				ResultSet result = GeneralDao.executeQuery(conn, SELECT_ACCOUNT_SQL, loginParamList);) {
 
 			//アカウント情報をNULLで初期化
-			Account account = null;
+			Employee employee = null;
 
 			while (result.next()) {
 
-				account = new Account(
+				employee = new Employee(
 
 						//ログインしたい社員のIDを取得
 						result.getInt("accountId")
@@ -58,10 +58,10 @@ public class EmployeeCertification {
 
 			HttpSession session = req.getSession();
 
-			if (account != null)
+			if (employee != null)
 
 				//ログインする社員のIDをセッションで管理
-				session.setAttribute("account", account);
+				session.setAttribute("employee", employee);
 
 		}
 

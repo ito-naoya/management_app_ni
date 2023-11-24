@@ -3,7 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import beans.Account;
+import beans.Employee;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,23 +27,23 @@ public class EmployeeDeleteController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		
-		//ログイン中のユーザーをセッションから取得
-		Account loginAccount = (Account) session.getAttribute("account");
+		//ログイン中の社員情報をセッションから取得
+		Employee loginEmployee = (Employee) session.getAttribute("account");
 
-		//ログインしているユーザーがいる？
-		if (loginAccount == null) {
+		//ログインしている社員がいる？
+		if (loginEmployee == null) {
 
 			//トップページへリダイレクト(ログインページ)
 			res.sendRedirect("top");
 
 		} else {
 			
-			//削除対象の従業員のIDを取得
+			//削除対象の社員のIDを取得
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
 
-				//削除対象の従業員情報を削除
+				//削除対象の社員情報を削除
 				int employeeDeleteNum = EmployeeDelete.employeeDelete(accountId);
 				req.setAttribute("employeeDeleteMsg", employeeDeleteNum + "件の従業員情報を削除しました。");
 
