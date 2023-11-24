@@ -31,7 +31,7 @@ public class EmployeeEditController extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		//ログイン中の社員をセッションから取得
-		Employee loginEmployee = (Employee) session.getAttribute("account");
+		Employee loginEmployee = (Employee) session.getAttribute("employee");
 
 		//ログインしている社員がいる？
 		if (loginEmployee == null) {
