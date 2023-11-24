@@ -23,12 +23,12 @@ public class EmployeeLoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		String name = req.getParameter("name");
+		String employeeName = req.getParameter("employeeName");
 		String password = req.getParameter("password");
 
 		try {
 
-			EmployeeCertification.login(req, name, password);
+			EmployeeCertification.login(req, employeeName, password);
 
 		} catch (ClassNotFoundException | SQLException e) {
 
