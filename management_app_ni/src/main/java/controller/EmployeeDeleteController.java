@@ -26,9 +26,9 @@ public class EmployeeDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		Account loginStatus = (Account) session.getAttribute("account");
+		Account loginAccount = (Account) session.getAttribute("account");
 
-		if (loginStatus == null) {
+		if (loginAccount == null) {
 
 			res.sendRedirect("top");
 
