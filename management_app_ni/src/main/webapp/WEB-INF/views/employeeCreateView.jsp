@@ -49,9 +49,9 @@
 			for (String department : departmentList) {
 			%>
 
-			<option>
-				<%=department%>
-			</option>
+				<option>
+					<%=department%>
+				</option>
 
 			<%
 			}

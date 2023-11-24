@@ -41,25 +41,25 @@
 			for (String department : departmentList) {
 			%>
 
-			<%
-			if (department.equals(employee.getDepartment())) {
-			%>
-
-			<option selected>
-				<%=department%>
-			</option>
-
-			<%
-			} else {
-			%>
-
-			<option>
-				<%=department%>
-			</option>
-
-			<%
-			}
-			%>
+				<%
+				if (department.equals(employee.getDepartment())) {
+				%>
+	
+					<option selected>
+						<%=department%>
+					</option>
+	
+				<%
+				} else {
+				%>
+	
+					<option>
+						<%=department%>
+					</option>
+	
+				<%
+				}
+				%>
 
 			<%
 			}
@@ -84,25 +84,25 @@
 			%>
 
 
-			<%
-			if (position.equals(employee.getPosition())) {
-			%>
-
-			<option selected>
-				<%=position%>
-			</option>
-
-			<%
-			} else {
-			%>
-
-			<option>
-				<%=position%>
-			</option>
-
-			<%
-			}
-			%>
+				<%
+				if (position.equals(employee.getPosition())) {
+				%>
+		
+					<option selected>
+						<%=position%>
+					</option>
+	
+				<%
+				} else {
+				%>
+	
+					<option>
+						<%=position%>
+					</option>
+	
+				<%
+				}
+				%>
 
 
 			<%
