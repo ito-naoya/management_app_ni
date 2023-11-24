@@ -70,10 +70,10 @@ public class EmployeeUpdate {
 
 		try (Connection conn = DbConnection.getConnection();) {
 
-			//更新後の所属部署の取得
+			//更新後の所属部署のIDを取得
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
 			
-			//更新後の役職の取得
+			//更新後の役職のIDを取得
 			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITION_ID_SQL, positionParamList);
 
 			int departmentId = 0;
