@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="beans.Account"%>
 <%@ page import="beans.Employee"%>
 <%@ page import="java.util.*"%>
 
@@ -54,8 +53,16 @@
 					${employee.getDepartment()}
 				</p>
 				
+				
 				<div class="employeeOptionBtn">
 				
+					<form action="edit?accountId=<%=employee.getAccountId()%>" method="GET">	
+						
+		 				<input type="hidden" value="<%=employee.getAccountId()%>" name="accountId">
+						<input type="submit" value="編集" class="employeeEditBtn">	
+										
+					</form>
+					
 					<form action="logout" method="POST">	
 								
 						<input type="submit" value="ログアウト" class="logoutBtn">	
@@ -138,13 +145,7 @@
 										<%=emp.getDepartment()%>
 									</td>	
 									
-									<td>
-									
-										<a href="edit?accountId=<%=emp.getAccountId()%>"> 
-											編集
-										</a>
-										
-									</td>	
+									<td></td>	
 									
 									<td>
 									
