@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/employeeEdit.css">
 </head>
 <body>
 
@@ -24,6 +25,14 @@
 		</label>
 		
 		<input type="text" name="employeeName" value="<%=employee.getEmployeeName()%>">
+		
+		<br> 
+		
+		<label for="password">
+			パスワード
+		</label>
+		
+		<input type="text" name="password">
 		
 		<br> 
 		
@@ -113,7 +122,7 @@
 		
 		 <br>
 		 
-		  <input type="submit" value="更新する">
+		  <input type="submit" value="更新する" class="employeeUpdateBtn">
 		  
 	</form>
 

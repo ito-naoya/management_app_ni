@@ -37,12 +37,13 @@ public class Employee {
 
 	}
 
-	public Employee(int accountId, String department, String position, String employeeName) {
+	public Employee(int accountId, String department, String position, String employeeName, String password) {
 
 		this.accountId = accountId;
 		this.department = department;
 		this.position = position;
 		this.employeeName = employeeName;
+		this.password = password;
 
 	}
 

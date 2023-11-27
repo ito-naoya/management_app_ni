@@ -84,6 +84,9 @@ public class EmployeeEditController extends HttpServlet {
 		//変更後の所属部署を取得
 		String department = req.getParameter("department");
 		
+		//変更後のパスワードを取得
+		String password = req.getParameter("password");	
+		
 		//変更後の役職を取得
 		String position = req.getParameter("position");
 		
@@ -91,7 +94,7 @@ public class EmployeeEditController extends HttpServlet {
 		String employeeName = req.getParameter("employeeName");
 		
 		//変更後の社員情報をnew
-		Employee updateEmployee = new Employee(accountId, department, position, employeeName);
+		Employee updateEmployee = new Employee(accountId, department, position, employeeName, password);
 
 		try {
 			

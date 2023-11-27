@@ -1,5 +1,6 @@
 package model;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,12 +36,15 @@ public class EmployeeUpdate {
 	private static final String UPDATE_ACCOUNT_SQL = "UPDATE "
 			+ "accountTable "
 			+ "SET "
-			+ "employeeName = ? "
+			+ "employeeName = ?, "
+			+ "password = ? "
 			+ "WHERE "
 			+ "accountId = ?";
 
 	public static int employeeUpdate(Employee updateEmployee)
-			throws ClassNotFoundException, SQLException {
+			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+		
+		String hashedPassword = HashGenerator.generateHash(updateEmployee.getPassword());
 
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
@@ -60,6 +64,9 @@ public class EmployeeUpdate {
 			{
 				//更新後の社員の名前をリストに追加
 				add(updateEmployee.getEmployeeName());
+				
+				//更新後のパスワードをリストに追加
+				add(hashedPassword);
 				
 				//更新対象の社員のIDをリストに追加
 				add(updateEmployee.getAccountId());
