@@ -30,6 +30,14 @@ h3{
 	cursor: pointer;
 }
 
+.employeeEditBtn{
+	background-color: blue;
+	color: white;
+	border: solid 1px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
 .employeeDiv {
 	display: flex;
 	justify-content: space-evenly;

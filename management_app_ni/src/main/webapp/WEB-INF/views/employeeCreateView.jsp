@@ -3,11 +3,13 @@
 	<%@ page import="java.util.*"%>
 <%@ page import="beans.Employee"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/employeeCreate.css">
 </head>
 <body>
 
@@ -15,7 +17,7 @@
 	Employee employee = (Employee) request.getAttribute("employee");
 	%>
 
-	<h1>従業員情報編集</h1>
+	<h1>新規社員情報追加</h1>
 
 	<form action="create" method="POST">
 	
@@ -87,7 +89,7 @@
 		
 		<br>
 		
-	<input type="submit" value="追加する">
+	<input type="submit" value="追加する" class="employeeCreateBtn">
 	
 	</form>
 

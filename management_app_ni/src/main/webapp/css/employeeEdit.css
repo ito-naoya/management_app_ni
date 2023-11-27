@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.employeeUpdateBtn{
+	background-color: blue;
+	color: white;
+	border: solid 1px;
+	border-radius: 10px;
+	cursor: pointer;
+}
