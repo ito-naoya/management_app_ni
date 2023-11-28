@@ -131,7 +131,7 @@ public class SelectEmployee {
 				
 			}  
 				
-			if(employeeList.size() == 0) return "Employee ID that does not exist";
+			if(employeeList.isEmpty()) return "Employee ID that does not exist";
 				
 			return employeeList;
 			
