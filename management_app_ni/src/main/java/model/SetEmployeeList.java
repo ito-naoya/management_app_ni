@@ -19,7 +19,7 @@ public class SetEmployeeList {
 		if (loginEmployee != null) {
 
 			//ログインしている社員の情報を取得
-			Employee employee = SelectEmployee.selectByAccountId(loginEmployee.getAccountId());
+			Employee employee = (Employee) SelectEmployee.selectByAccountId(loginEmployee.getAccountId());
 			req.setAttribute("employee", employee);
 
 			//ログインしている社員の役職が係長 or 課長？

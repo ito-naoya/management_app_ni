@@ -51,7 +51,7 @@ public class EmployeeEditController extends HttpServlet {
 				if (message != "") req.setAttribute("errorMsg", message);
 
 				//編集対象の社員情報を取得
-				Employee employee = SelectEmployee.selectByAccountId(accountId);
+				Employee employee = (Employee)SelectEmployee.selectByAccountId(accountId);
 				req.setAttribute("employee", employee);
 
 				//部署データを全て取得
@@ -103,8 +103,8 @@ public class EmployeeEditController extends HttpServlet {
 		try {
 
 			if (message.equals("password is defective") ||
-				message.equals("department is defective") ||
-				message.equals("employeeName is defective")) {
+					message.equals("department is defective") ||
+					message.equals("employeeName is defective")) {
 
 				doGet(req, res);
 
