@@ -21,7 +21,7 @@ public class EmployeeDelete {
 			+ "WHERE "
 			+ "accountId = ?";
 
-	public static int employeeDelete(Integer accountId) throws ClassNotFoundException, SQLException {
+	public static String employeeDelete(Integer accountId) throws ClassNotFoundException, SQLException {
 
 		ArrayList<Object> paramList = new ArrayList<Object>() {
 			{
@@ -40,7 +40,7 @@ public class EmployeeDelete {
 
 		}
 
-		return deleteNum;
+		return deleteNum + "件の社員情報を削除しました。";
 	}
 
 }

@@ -21,6 +21,8 @@ import model.SelectPosition;
 public class EmployeeEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static String message = "";
+
 	public EmployeeEditController() {
 		super();
 
@@ -29,13 +31,13 @@ public class EmployeeEditController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		
+
 		//ログイン中の社員をセッションから取得
 		Employee loginEmployee = (Employee) session.getAttribute("employee");
 
 		//ログインしている社員がいる？
 		if (loginEmployee == null) {
-			
+
 			//トップページへリダイレクト(ログインページ)
 			res.sendRedirect("top");
 
@@ -45,6 +47,8 @@ public class EmployeeEditController extends HttpServlet {
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
+				
+				if (message != "") req.setAttribute("errorMsg", message);
 
 				//編集対象の社員情報を取得
 				Employee employee = SelectEmployee.selectByAccountId(accountId);
@@ -80,27 +84,40 @@ public class EmployeeEditController extends HttpServlet {
 
 		//編集対象の社員のIDを取得
 		int accountId = Integer.parseInt(req.getParameter("accountId"));
-		
+
 		//変更後の所属部署を取得
 		String department = req.getParameter("department");
-		
+
 		//変更後のパスワードを取得
-		String password = req.getParameter("password");	
-		
+		String password = req.getParameter("password");
+
 		//変更後の役職を取得
 		String position = req.getParameter("position");
-		
+
 		//変更後の社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
-		
+
 		//変更後の社員情報をnew
 		Employee updateEmployee = new Employee(accountId, department, position, employeeName, password);
 
 		try {
-			
-			//社員情報の更新
-			int employeeUpdateNum = EmployeeUpdate.employeeUpdate(updateEmployee);
-			req.setAttribute("employeeUpdateMsg", employeeUpdateNum + "件の従業員情報を更新しました。");
+
+			if (message.equals("password is defective") ||
+				message.equals("department is defective")) {
+
+				doGet(req, res);
+
+			} else {
+
+				//社員情報の更新
+				message = EmployeeUpdate.employeeUpdate(updateEmployee);
+				req.setAttribute("employeeUpdateMsg", message);
+
+				String view = "/WEB-INF/views/editCompleteView.jsp";
+				RequestDispatcher dispatcher = req.getRequestDispatcher(view);
+				dispatcher.forward(req, res);
+
+			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 
@@ -111,10 +128,6 @@ public class EmployeeEditController extends HttpServlet {
 			e.printStackTrace();
 
 		}
-
-		String view = "/WEB-INF/views/editCompleteView.jsp";
-		RequestDispatcher dispatcher = req.getRequestDispatcher(view);
-		dispatcher.forward(req, res);
 
 	}
 

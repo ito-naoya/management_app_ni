@@ -41,11 +41,28 @@ public class EmployeeUpdate {
 			+ "WHERE "
 			+ "accountId = ?";
 
-	public static int employeeUpdate(Employee updateEmployee)
+	public static String employeeUpdate(Employee updateEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 		
+		if(updateEmployee.getPassword() == null) return "password is defective";
+		
 		String hashedPassword = HashGenerator.generateHash(updateEmployee.getPassword());
+		
+		ArrayList<Object> accountParamList = new ArrayList<Object>() {
+			{
+				//更新後の社員の名前をリストに追加
+				add(updateEmployee.getEmployeeName());
+				
+				//更新後のパスワードをリストに追加
+				add(hashedPassword);
+				
+				//更新対象の社員のIDをリストに追加
+				add(updateEmployee.getAccountId());
+			}
+		};
 
+		if(updateEmployee.getDepartment() == null) return "department is defective";
+		
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//更新後の所属部署をリストに追加
@@ -60,18 +77,7 @@ public class EmployeeUpdate {
 			}
 		};
 
-		ArrayList<Object> accountParamList = new ArrayList<Object>() {
-			{
-				//更新後の社員の名前をリストに追加
-				add(updateEmployee.getEmployeeName());
-				
-				//更新後のパスワードをリストに追加
-				add(hashedPassword);
-				
-				//更新対象の社員のIDをリストに追加
-				add(updateEmployee.getAccountId());
-			}
-		};
+		
 
 		int updateNum = 0;
 
@@ -122,7 +128,7 @@ public class EmployeeUpdate {
 
 		}
 
-		return updateNum;
+		return updateNum + "件の従業員情報を更新しました。";
 
 	}
 

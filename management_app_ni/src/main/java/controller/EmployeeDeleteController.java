@@ -17,6 +17,8 @@ import model.EmployeeDelete;
 public class EmployeeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static String message = "";
+
 	public EmployeeDeleteController() {
 
 		super();
@@ -26,7 +28,7 @@ public class EmployeeDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		
+
 		//ログイン中の社員情報をセッションから取得
 		Employee loginEmployee = (Employee) session.getAttribute("employee");
 
@@ -37,15 +39,15 @@ public class EmployeeDeleteController extends HttpServlet {
 			res.sendRedirect("top");
 
 		} else {
-			
+
 			//削除対象の社員のIDを取得
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
 
 				//削除対象の社員情報を削除
-				int employeeDeleteNum = EmployeeDelete.employeeDelete(accountId);
-				req.setAttribute("employeeDeleteMsg", employeeDeleteNum + "件の従業員情報を削除しました。");
+				message = EmployeeDelete.employeeDelete(accountId);
+				req.setAttribute("employeeDeleteMsg", message);
 
 			} catch (ClassNotFoundException | SQLException e) {
 
