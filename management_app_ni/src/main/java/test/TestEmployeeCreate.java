@@ -23,7 +23,7 @@ class TestEmployeeCreate {
 	}
 
 	@Test
-	//パスワードが８文字未満の場合
+	//パスワードが8文字未満の場合
 	void testPassIsUnder8() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
 		Employee employee = new Employee("テスト社員", "aaaaaaa", "第1部署", "");
 		String result = EmployeeCreate.employeeCreate(employee);
@@ -31,7 +31,7 @@ class TestEmployeeCreate {
 	}
 
 	@Test
-	//パスワードが17文字以上の場合
+	//パスワードが16文字を超える場合
 	void testPassIsOver16() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
 		Employee employee = new Employee("テスト社員", "aaaaaaaaaaaaaaaaa", "第1部署", "");
 		String result = EmployeeCreate.employeeCreate(employee);

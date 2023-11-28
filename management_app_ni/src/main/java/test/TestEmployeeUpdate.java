@@ -21,7 +21,7 @@ class TestEmployeeUpdate {
 	}
 
 	@Test
-	//パスワードの文字数が８文字未満の場合
+	//パスワードが8文字未満の場合
 	void testPassIsUnder8() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
 		Employee employee = new Employee(2, "第2部署", "課長", "課長2", "pass");
 		String result = EmployeeUpdate.employeeUpdate(employee);
@@ -29,7 +29,7 @@ class TestEmployeeUpdate {
 	}
 
 	@Test
-	//パスワードの文字数が16文字より多い場合
+	//パスワードが16文字を超える場合
 	void testPassIsOver16() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
 		Employee employee = new Employee(2, "第2部署", "課長", "課長2", "passwordpasswordpassword");
 		String result = EmployeeUpdate.employeeUpdate(employee);
