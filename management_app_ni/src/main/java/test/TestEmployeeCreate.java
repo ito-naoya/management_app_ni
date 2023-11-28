@@ -19,9 +19,9 @@ class TestEmployeeCreate {
 	//		Object result = EmployeeCreate.employeeCreate(employee);
 	//		assertEquals("password is defective", result);
 	//	}
-	//	
+
 	//	@Test
-	//	//パスワードが16文字以上の場合
+	//	//パスワードが17文字以上の場合
 	//		void testPassIsOver16() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
 	//			Employee employee = new Employee("テスト社員", "aaaaaaaaaaaaaaaaa", "第1部署", "");
 	//			Object result = EmployeeCreate.employeeCreate(employee);
