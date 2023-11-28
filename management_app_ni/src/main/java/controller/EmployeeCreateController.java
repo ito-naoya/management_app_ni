@@ -88,7 +88,7 @@ public class EmployeeCreateController extends HttpServlet {
 		try {
 
 			//新規社員を追加
-			int createNum = EmployeeCreate.employeeCreate(newEmployee);
+			Object createNum = EmployeeCreate.employeeCreate(newEmployee);
 			req.setAttribute("employeeCreateMsg", createNum + "件の従業員情報を追加しました。");
 
 		} catch (ClassNotFoundException | SQLException e) {

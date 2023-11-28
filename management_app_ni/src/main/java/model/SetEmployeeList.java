@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import beans.Employee;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class SetEmployeeList {
 			if (employee.getPosition().equals("課長") || employee.getPosition().equals("係長")) {
 
 				//社員データを取得
-				ArrayList<Employee> employeeList = SelectEmployee.selectByDepartmentId(employee.getDepartmentId());
+				Object employeeList = SelectEmployee.selectByDepartmentId(employee.getDepartmentId());
 				req.setAttribute("employeeList", employeeList);
 
 			}

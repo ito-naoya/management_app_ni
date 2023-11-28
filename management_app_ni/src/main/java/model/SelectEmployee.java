@@ -89,7 +89,7 @@ public class SelectEmployee {
 	
 	
 
-	public static ArrayList<Employee> selectByDepartmentId(int departmentId)
+	public static Object selectByDepartmentId(int departmentId)
 			throws ClassNotFoundException, SQLException {
 
 		ArrayList<Object> paramList = new ArrayList<Object>() {
@@ -128,9 +128,14 @@ public class SelectEmployee {
 
 				employeeList.add(employee);
 
-			}
-
+				
+			}  
+				
+			if(employeeList.size() == 0) return "Employee ID that does not exist";
+				
 			return employeeList;
+			
+
 
 		}
 

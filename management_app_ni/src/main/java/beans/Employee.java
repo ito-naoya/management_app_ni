@@ -19,7 +19,9 @@ public class Employee {
 
 	};
 
-	public Employee(int accountId, String employeeName, int departmentId, String department, int positionId, String position) {
+	//取得した社員情報保持する際のコンストラクター
+	public Employee(int accountId, String employeeName, int departmentId, String department, int positionId,
+			String position) {
 		this.accountId = accountId;
 		this.employeeName = employeeName;
 		this.departmentId = departmentId;
@@ -28,22 +30,24 @@ public class Employee {
 		this.position = position;
 	}
 
+	//新規社員追加時のコンストラクター
 	public Employee(String employeeName, String password, String department, String position) {
 
 		this.employeeName = employeeName;
-		this.password = password;
-		this.department = department;
+		setPassword(password);
+		setDepartment(department);
 		this.position = position;
 
 	}
 
+	//社員情報更新時のコンストラクター
 	public Employee(int accountId, String department, String position, String employeeName, String password) {
 
 		this.accountId = accountId;
-		this.department = department;
+		setDepartment(department);
 		this.position = position;
 		this.employeeName = employeeName;
-		this.password = password;
+		setPassword(password);
 
 	}
 
@@ -76,7 +80,16 @@ public class Employee {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+
+		if (!password.equals("")
+				&& password != null
+				&& 8 < password.length()
+				&& password.length() < 16) {
+			this.password = password;
+		} else {
+			this.password = null;
+		}
+
 	}
 
 	public int getDepartmentId() {
@@ -99,7 +112,12 @@ public class Employee {
 
 	public void setDepartment(String department) {
 
-		this.department = department;
+		if (!department.equals("")
+				&& department != null) {
+			this.department = department;
+		} else {
+			this.department = null;
+		}
 
 	}
 
