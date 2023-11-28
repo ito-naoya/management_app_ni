@@ -43,27 +43,30 @@ public class EmployeeUpdate {
 
 	public static String employeeUpdate(Employee updateEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-		
-		if(updateEmployee.getPassword() == null) return "password is defective";
-		if(updateEmployee.getEmployeeName() == null) return "employeeName is defective";
-		
+
+		if (updateEmployee.getPassword() == null)
+			return "password is defective";
+		if (updateEmployee.getEmployeeName() == null)
+			return "employeeName is defective";
+
 		String hashedPassword = HashGenerator.generateHash(updateEmployee.getPassword());
-		
+
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
 			{
 				//更新後の社員の名前をリストに追加
 				add(updateEmployee.getEmployeeName());
-				
+
 				//更新後のパスワードをリストに追加
 				add(hashedPassword);
-				
+
 				//更新対象の社員のIDをリストに追加
 				add(updateEmployee.getAccountId());
 			}
 		};
 
-		if(updateEmployee.getDepartment() == null) return "department is defective";
-		
+		if (updateEmployee.getDepartment() == null)
+			return "department is defective";
+
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//更新後の所属部署をリストに追加
@@ -78,15 +81,13 @@ public class EmployeeUpdate {
 			}
 		};
 
-		
-
 		int updateNum = 0;
 
 		try (Connection conn = DbConnection.getConnection();) {
 
 			//更新後の所属部署のIDを取得
 			ResultSet departmentResult = GeneralDao.executeQuery(conn, SELECT_DEPARTMENT_ID_SQL, departmentParamList);
-			
+
 			//更新後の役職のIDを取得
 			ResultSet positionResult = GeneralDao.executeQuery(conn, SELECT_POSITION_ID_SQL, positionParamList);
 
@@ -94,7 +95,7 @@ public class EmployeeUpdate {
 			int positionId = 0;
 
 			while (departmentResult.next()) {
-				
+
 				//更新後の所属部署のIDを取得
 				departmentId = departmentResult.getInt("departmentId");
 
@@ -113,14 +114,13 @@ public class EmployeeUpdate {
 
 				//更新後の所属部署のIDをリストに追加
 				employeeParamList.add(departmentId);
-				
+
 				//更新後の役職のIDをリストに追加
 				employeeParamList.add(positionId);
-				
+
 				//更新対象の社員のIDをリストに追加
 				employeeParamList.add(updateEmployee.getAccountId());
 
-				
 				//社員情報を更新
 				GeneralDao.executeUpdate(conn, UPDATE_EMPLOYEE_SQL, employeeParamList);
 				updateNum = GeneralDao.executeUpdate(conn, UPDATE_ACCOUNT_SQL, accountParamList);

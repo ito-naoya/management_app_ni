@@ -15,7 +15,7 @@ public class SelectDepartment {
 			+ "departmentTable";
 
 	public static ArrayList<String> selectDepartmentAll() throws SQLException, ClassNotFoundException {
-		
+
 		ArrayList<String> departmentList = new ArrayList<String>();
 
 		try (Connection conn = DbConnection.getConnection();
@@ -33,5 +33,5 @@ public class SelectDepartment {
 		return departmentList;
 
 	}
-	
+
 }

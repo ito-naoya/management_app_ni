@@ -45,7 +45,8 @@ public class EmployeeCreateController extends HttpServlet {
 
 			try {
 
-				if (message != "") req.setAttribute("errorMsg", message);
+				if (message != "")
+					req.setAttribute("errorMsg", message);
 
 				//部署データを全て取得
 				ArrayList<String> departmentList = SelectDepartment.selectDepartmentAll();
@@ -94,9 +95,9 @@ public class EmployeeCreateController extends HttpServlet {
 			//新規社員を追加
 			message = EmployeeCreate.employeeCreate(newEmployee);
 
-			if (message.equals("password is defective") || 
-				message.equals("department is defective") ||
-				message.equals("employeeName is defective")) {
+			if (message.equals("password is defective") ||
+					message.equals("department is defective") ||
+					message.equals("employeeName is defective")) {
 
 				doGet(req, res);
 

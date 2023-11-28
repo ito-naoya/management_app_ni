@@ -71,9 +71,9 @@ public class Employee {
 
 	public void setEmployeeName(String employeeName) {
 
-		if(!employeeName.equals("") &&
-			employeeName != null &&
-			employeeName.length() > 0) {
+		if (!employeeName.equals("") &&
+				employeeName != null &&
+				employeeName.length() > 0) {
 			this.employeeName = employeeName;
 		} else {
 			this.employeeName = null;
@@ -87,10 +87,10 @@ public class Employee {
 
 	public void setPassword(String password) {
 
-		if (!password.equals("") && 
-			 password != null &&
-			 password.length() > 8 && 
-			 password.length() < 16) {
+		if (!password.equals("") &&
+				password != null &&
+				password.length() > 8 &&
+				password.length() < 16) {
 			this.password = password;
 		} else {
 			this.password = null;

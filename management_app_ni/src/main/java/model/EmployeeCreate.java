@@ -47,9 +47,9 @@ public class EmployeeCreate {
 	public static String employeeCreate(Employee newEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
-		
-		if(newEmployee.getPassword() == null) return "password is defective";
-		
+		if (newEmployee.getPassword() == null)
+			return "password is defective";
+
 		//パスワードのハッシュ化
 		String hashedGenerator = HashGenerator.generateHash(newEmployee.getPassword());
 
@@ -62,18 +62,20 @@ public class EmployeeCreate {
 				add(hashedGenerator);
 			}
 		};
-		
-		if(newEmployee.getEmployeeName() == null) return "employeeName is defective";
-		
+
+		if (newEmployee.getEmployeeName() == null)
+			return "employeeName is defective";
+
 		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
 				//新規社員の名前をリストに追加
 				add(newEmployee.getEmployeeName());
 			}
 		};
-		
-		if(newEmployee.getDepartment() == null) return "department is defective";
-		
+
+		if (newEmployee.getDepartment() == null)
+			return "department is defective";
+
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//新規社員の所属部署をリストに追加
@@ -144,11 +146,10 @@ public class EmployeeCreate {
 
 			//新規社員情報を追加
 			int createNum = GeneralDao.executeUpdate(conn, INSERT_EMPLOYEE_SQL, enployeeParamList);
-			
+
 			String message = createNum + "件の従業員情報を追加しました。";
-			
+
 			return message;
-		
 
 		}
 

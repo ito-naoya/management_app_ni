@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public class HashGenerator {
 	// ハッシュ化を行うメソッド
 	public static String generateHash(String val) throws NoSuchAlgorithmException {
-		
+
 		if (val.equals("") || val == null) {
 			return null;
 		}

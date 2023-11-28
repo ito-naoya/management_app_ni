@@ -33,5 +33,5 @@ public class SelectPosition {
 		return positionList;
 
 	}
-	
+
 }

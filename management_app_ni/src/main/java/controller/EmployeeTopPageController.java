@@ -20,11 +20,11 @@ public class EmployeeTopPageController extends HttpServlet {
 		super();
 
 	}
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		try {
-			
+
 			//社員リストの取得とセット
 			SetEmployeeList.setEmployeeList(req);
 
@@ -43,5 +43,5 @@ public class EmployeeTopPageController extends HttpServlet {
 		dispatcher.forward(req, res);
 
 	}
-	
+
 }

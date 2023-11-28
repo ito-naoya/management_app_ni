@@ -47,11 +47,12 @@ public class EmployeeEditController extends HttpServlet {
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
 
 			try {
-				
-				if (message != "") req.setAttribute("errorMsg", message);
+
+				if (message != "")
+					req.setAttribute("errorMsg", message);
 
 				//編集対象の社員情報を取得
-				Employee employee = (Employee)SelectEmployee.selectByAccountId(accountId);
+				Employee employee = (Employee) SelectEmployee.selectByAccountId(accountId);
 				req.setAttribute("employee", employee);
 
 				//部署データを全て取得

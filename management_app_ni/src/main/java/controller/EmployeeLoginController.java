@@ -25,7 +25,7 @@ public class EmployeeLoginController extends HttpServlet {
 
 		//ログインする社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
-		
+
 		//ログインする社員のパスワードを取得
 		String password = req.getParameter("password");
 
