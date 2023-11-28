@@ -21,6 +21,8 @@ import model.SelectPosition;
 public class EmployeeCreateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static String message = "";
+
 	public EmployeeCreateController() {
 		super();
 
@@ -42,6 +44,8 @@ public class EmployeeCreateController extends HttpServlet {
 		} else {
 
 			try {
+				
+				if (message.equals("password is defective")) req.setAttribute("errorMsg", message);
 
 				//部署データを全て取得
 				ArrayList<String> departmentList = SelectDepartment.selectDepartmentAll();
@@ -69,16 +73,16 @@ public class EmployeeCreateController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+
 		//新規社員の名前を取得
 		String employeeName = req.getParameter("employeeName");
-		
+
 		//新規社員のパスワードを取得
 		String password = req.getParameter("password");
-		
+
 		//新規社員の所属部署を取得
 		String department = req.getParameter("department");
-		
+
 		//新規社員の役職を取得
 		String position = req.getParameter("position");
 
@@ -88,8 +92,22 @@ public class EmployeeCreateController extends HttpServlet {
 		try {
 
 			//新規社員を追加
-			Object createNum = EmployeeCreate.employeeCreate(newEmployee);
-			req.setAttribute("employeeCreateMsg", createNum + "件の従業員情報を追加しました。");
+			message = EmployeeCreate.employeeCreate(newEmployee);
+
+			if (message.equals("password is defective")) {
+
+				doGet(req, res);
+
+			} else {
+
+				//追加完了メッセージをviewに渡す
+				req.setAttribute("employeeCreateMsg", message);
+
+				String view = "/WEB-INF/views/createCompleteView.jsp";
+				RequestDispatcher dispatcher = req.getRequestDispatcher(view);
+				dispatcher.forward(req, res);
+
+			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 
@@ -104,10 +122,6 @@ public class EmployeeCreateController extends HttpServlet {
 			e.printStackTrace();
 
 		}
-
-		String view = "/WEB-INF/views/createCompleteView.jsp";
-		RequestDispatcher dispatcher = req.getRequestDispatcher(view);
-		dispatcher.forward(req, res);
 
 	}
 

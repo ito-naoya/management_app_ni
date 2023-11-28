@@ -44,7 +44,7 @@ public class EmployeeCreate {
 			+ "VALUES "
 			+ "(?, ?, ?)";
 
-	public static Object employeeCreate(Employee newEmployee)
+	public static String employeeCreate(Employee newEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
 		//パスワードのハッシュ化
@@ -142,7 +142,10 @@ public class EmployeeCreate {
 
 			//新規社員情報を追加
 			int createNum = GeneralDao.executeUpdate(conn, INSERT_EMPLOYEE_SQL, enployeeParamList);
-			return createNum;
+			
+			String message = createNum + "件の従業員情報を追加しました。";
+			
+			return message;
 		
 
 		}

@@ -14,7 +14,17 @@
 <body>
 
 	<%
-	Employee employee = (Employee) request.getAttribute("employee");
+	 String errorMsg = (String)request.getAttribute("errorMsg");
+	%>
+	
+	<%
+	if(errorMsg != "" ) {
+	%>
+	
+		<p class="errorMsg">${errorMsg}</p>
+	
+	<%
+	} 
 	%>
 
 	<h1>新規社員情報追加</h1>
@@ -48,15 +58,23 @@
 			%>
 			
 			<%
-			for (String department : departmentList) {
+			if(!departmentList.isEmpty()){
 			%>
-
-				<option>
-					<%=department%>
-				</option>
-
+			
+				<%
+				for (String department : departmentList) {
+				%>
+	
+					<option>
+						<%=department%>
+					</option>
+	
+				<%
+				}
+				%>
+				
 			<%
-			}
+			} 
 			%>
 
 		</select> 
@@ -72,19 +90,27 @@
 			<%
 			ArrayList<String> positionList = (ArrayList<String>) request.getAttribute("positionList");
 			%>
-
+			
 			<%
-			for (String position : positionList) {
+			if(!positionList.isEmpty()){
 			%>
 
-			<option>
-				<%=position%>
-			</option>
+				<%
+				for (String position : positionList) {
+				%>
+	
+					<option>
+						<%=position%>
+					</option>
+	
+				<%
+				}
+				%>
 
 			<%
 			}
 			%>
-
+			
 		</select> 
 		
 		<br>
