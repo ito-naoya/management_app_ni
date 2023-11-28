@@ -45,6 +45,7 @@ public class EmployeeUpdate {
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 		
 		if(updateEmployee.getPassword() == null) return "password is defective";
+		if(updateEmployee.getEmployeeName() == null) return "employeeName is defective";
 		
 		String hashedPassword = HashGenerator.generateHash(updateEmployee.getPassword());
 		

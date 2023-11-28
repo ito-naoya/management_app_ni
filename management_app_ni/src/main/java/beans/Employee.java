@@ -33,7 +33,7 @@ public class Employee {
 	//新規社員追加時のコンストラクター
 	public Employee(String employeeName, String password, String department, String position) {
 
-		this.employeeName = employeeName;
+		setEmployeeName(employeeName);
 		setPassword(password);
 		setDepartment(department);
 		this.position = position;
@@ -46,7 +46,7 @@ public class Employee {
 		this.accountId = accountId;
 		setDepartment(department);
 		this.position = position;
-		this.employeeName = employeeName;
+		setEmployeeName(employeeName);
 		setPassword(password);
 
 	}
@@ -71,7 +71,13 @@ public class Employee {
 
 	public void setEmployeeName(String employeeName) {
 
-		this.employeeName = employeeName;
+		if(!employeeName.equals("") &&
+			employeeName != null &&
+			employeeName.length() > 0) {
+			this.employeeName = employeeName;
+		} else {
+			this.employeeName = null;
+		}
 
 	}
 
@@ -81,10 +87,10 @@ public class Employee {
 
 	public void setPassword(String password) {
 
-		if (!password.equals("")
-				&& password != null
-				&& 8 < password.length()
-				&& password.length() < 16) {
+		if (!password.equals("") && 
+			 password != null &&
+			 password.length() > 8 && 
+			 password.length() < 16) {
 			this.password = password;
 		} else {
 			this.password = null;

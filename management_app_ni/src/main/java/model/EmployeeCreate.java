@@ -47,10 +47,10 @@ public class EmployeeCreate {
 	public static String employeeCreate(Employee newEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
-		//パスワードのハッシュ化
 		
 		if(newEmployee.getPassword() == null) return "password is defective";
 		
+		//パスワードのハッシュ化
 		String hashedGenerator = HashGenerator.generateHash(newEmployee.getPassword());
 
 		ArrayList<Object> accountParamList = new ArrayList<Object>() {
@@ -62,7 +62,9 @@ public class EmployeeCreate {
 				add(hashedGenerator);
 			}
 		};
-
+		
+		if(newEmployee.getEmployeeName() == null) return "employeeName is defective";
+		
 		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
 				//新規社員の名前をリストに追加
@@ -71,7 +73,7 @@ public class EmployeeCreate {
 		};
 		
 		if(newEmployee.getDepartment() == null) return "department is defective";
-
+		
 		ArrayList<Object> departmentParamList = new ArrayList<Object>() {
 			{
 				//新規社員の所属部署をリストに追加

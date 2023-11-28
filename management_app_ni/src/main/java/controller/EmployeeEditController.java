@@ -103,7 +103,8 @@ public class EmployeeEditController extends HttpServlet {
 		try {
 
 			if (message.equals("password is defective") ||
-				message.equals("department is defective")) {
+				message.equals("department is defective") ||
+				message.equals("employeeName is defective")) {
 
 				doGet(req, res);
 

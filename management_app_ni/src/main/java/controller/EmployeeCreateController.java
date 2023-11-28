@@ -95,7 +95,8 @@ public class EmployeeCreateController extends HttpServlet {
 			message = EmployeeCreate.employeeCreate(newEmployee);
 
 			if (message.equals("password is defective") || 
-				message.equals("department is defective")) {
+				message.equals("department is defective") ||
+				message.equals("employeeName is defective")) {
 
 				doGet(req, res);
 
