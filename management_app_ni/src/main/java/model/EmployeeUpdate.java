@@ -44,10 +44,11 @@ public class EmployeeUpdate {
 	public static String employeeUpdate(Employee updateEmployee)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
-		if (updateEmployee.getPassword() == null)
-			return "password is defective";
 		if (updateEmployee.getEmployeeName() == null)
 			return "employeeName is defective";
+		
+		if (updateEmployee.getPassword() == null)
+			return "password is defective";
 
 		String hashedPassword = HashGenerator.generateHash(updateEmployee.getPassword());
 
