@@ -57,12 +57,12 @@ public class EmployeeCertification {
 
 			}
 
-						HttpSession session = req.getSession();
+			HttpSession session = req.getSession();
 
-						if (employee != null)
+			if (employee != null)
 
-			//ログインする社員のIDをセッションで管理
-							session.setAttribute("employee", employee);
+				//ログインする社員のIDをセッションで管理
+				session.setAttribute("employee", employee);
 
 		}
 
