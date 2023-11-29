@@ -48,7 +48,7 @@ public class EmployeeLoginController extends HttpServlet {
 
 		}
 
-		//トップエージにリダイレクト
+		//トップページにリダイレクト
 		res.sendRedirect("top");
 
 	}
