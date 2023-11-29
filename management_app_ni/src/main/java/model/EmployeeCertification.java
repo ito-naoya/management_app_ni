@@ -30,6 +30,7 @@ public class EmployeeCertification {
 		String hashedPassword = HashGenerator.generateHash(password);
 
 		ArrayList<Object> loginParamList = new ArrayList<Object>() {
+
 			{
 				//新規社員の名前をリストに追加
 				add(employeeName);
@@ -56,12 +57,12 @@ public class EmployeeCertification {
 
 			}
 
-			HttpSession session = req.getSession();
+						HttpSession session = req.getSession();
 
-			if (employee != null)
+						if (employee != null)
 
-				//ログインする社員のIDをセッションで管理
-				session.setAttribute("employee", employee);
+			//ログインする社員のIDをセッションで管理
+							session.setAttribute("employee", employee);
 
 		}
 
