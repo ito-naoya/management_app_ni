@@ -46,6 +46,9 @@ public class EmployeeCreate {
 
 	public static String employeeCreate(Employee newEmployee)
 			throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
+		
+		if (newEmployee.getEmployeeName() == null)
+			return "employeeName is defective";
 
 		if (newEmployee.getPassword() == null)
 			return "password is defective";
@@ -62,9 +65,6 @@ public class EmployeeCreate {
 				add(hashedGenerator);
 			}
 		};
-
-		if (newEmployee.getEmployeeName() == null)
-			return "employeeName is defective";
 
 		ArrayList<Object> employeeParamList = new ArrayList<Object>() {
 			{
