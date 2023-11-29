@@ -79,6 +79,7 @@ public class SelectEmployee {
 
 						//社員の役職を取得
 						result.getString("position"));
+				
 			}
 
 		}
