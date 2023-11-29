@@ -8,8 +8,7 @@ import java.util.List;
 
 public class GeneralDao {
 
-	public static int executeUpdate(Connection conn, String sql, List<Object> paramList)
-			throws ClassNotFoundException, SQLException {
+	public static int executeUpdate(Connection conn, String sql, List<Object> paramList) throws SQLException {
 
 		PreparedStatement statement = conn.prepareStatement(sql);
 		setParameter(statement, paramList);
@@ -18,8 +17,7 @@ public class GeneralDao {
 
 	}
 
-	public static ResultSet executeQuery(Connection conn, String sql, List<Object> paramList)
-			throws SQLException, ClassNotFoundException {
+	public static ResultSet executeQuery(Connection conn, String sql, List<Object> paramList) throws SQLException {
 
 		PreparedStatement statement = conn.prepareStatement(sql);
 		setParameter(statement, paramList);
@@ -28,11 +26,10 @@ public class GeneralDao {
 
 	}
 
-	public static void setParameter(PreparedStatement statement, List<Object> paramList)
-			throws SQLException {
+	public static void setParameter(PreparedStatement statement, List<Object> paramList) throws SQLException {
 
 		for (int i = 0; i < paramList.size(); i++) {
-			
+
 			statement.setObject(i + 1, paramList.get(i));
 
 		}

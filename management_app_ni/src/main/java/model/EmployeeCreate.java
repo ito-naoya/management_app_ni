@@ -45,7 +45,7 @@ public class EmployeeCreate {
 			+ "(?, ?, ?)";
 
 	public static String employeeCreate(Employee newEmployee)
-			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+			throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
 
 		if (newEmployee.getPassword() == null)
 			return "password is defective";

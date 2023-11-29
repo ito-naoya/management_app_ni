@@ -24,7 +24,7 @@ public class EmployeeCertification {
 			+ "password = ?";
 
 	public static void login(HttpServletRequest req, String employeeName, String password)
-			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+			throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
 
 		//パスワードのハッシュ化
 		String hashedPassword = HashGenerator.generateHash(password);
