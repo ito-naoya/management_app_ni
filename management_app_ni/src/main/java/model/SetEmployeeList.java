@@ -13,13 +13,13 @@ public class SetEmployeeList {
 		HttpSession session = req.getSession();
 
 		//ログイン中の社員をセッションから取得
-		Employee loginEmployee = (Employee) session.getAttribute("employee");
+		Employee loginedEmployee = (Employee) session.getAttribute("employee");
 
 		//ログインしている社員がいる？
-		if (loginEmployee != null) {
+		if (loginedEmployee != null) {
 
 			//ログインしている社員の情報を取得
-			Employee employee = (Employee) SelectEmployee.selectByAccountId(loginEmployee.getAccountId());
+			Employee employee = (Employee) SelectEmployee.selectByAccountId(loginedEmployee.getAccountId());
 			req.setAttribute("employee", employee);
 
 			//ログインしている社員の役職が係長 or 課長？

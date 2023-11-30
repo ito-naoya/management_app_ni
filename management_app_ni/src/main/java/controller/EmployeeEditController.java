@@ -33,15 +33,10 @@ public class EmployeeEditController extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		//ログイン中の社員をセッションから取得
-		Employee loginEmployee = (Employee) session.getAttribute("employee");
+		Employee loginedEmployee = (Employee) session.getAttribute("employee");
 
 		//ログインしている社員がいる？
-		if (loginEmployee == null) {
-
-			//トップページへリダイレクト(ログインページ)
-			res.sendRedirect("top");
-
-		} else {
+		if (loginedEmployee != null) {
 
 			//編集対象の社員のIDを取得
 			int accountId = Integer.parseInt(req.getParameter("accountId"));
@@ -76,6 +71,11 @@ public class EmployeeEditController extends HttpServlet {
 			String view = "/WEB-INF/views/employeeEditView.jsp";
 			RequestDispatcher dispatcher = req.getRequestDispatcher(view);
 			dispatcher.forward(req, res);
+
+		} else {
+
+			//トップページへリダイレクト(ログインページ)
+			res.sendRedirect("top");
 
 		}
 
