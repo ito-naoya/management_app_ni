@@ -1,13 +1,14 @@
 package beans;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import model.EmployeeCertification;
 
-public class Employee {
+public class Employee implements Serializable {
 	private int accountId;
 	private String employeeName;
 	private String password;
@@ -17,13 +18,10 @@ public class Employee {
 	private String position;
 
 	public Employee() {
-
 	};
 
 	public Employee(int accountId) {
-
 		this.accountId = accountId;
-
 	};
 
 	//取得した社員情報保持する際のコンストラクター
@@ -39,54 +37,43 @@ public class Employee {
 
 	//新規社員追加時のコンストラクター
 	public Employee(String employeeName, String password, String department, String position) {
-
 		setEmployeeName(employeeName);
 		setPassword(password);
 		setDepartment(department);
 		this.position = position;
-
 	}
 
 	//社員情報更新時のコンストラクター
 	public Employee(int accountId, String department, String position, String employeeName, String password) {
-
 		this.accountId = accountId;
 		setDepartment(department);
 		this.position = position;
 		setEmployeeName(employeeName);
 		setPassword(password);
-
 	}
 
 	public static void login(HttpServletRequest req, String employeeName, String password)
 			throws NoSuchAlgorithmException, ClassNotFoundException, SQLException {
 		EmployeeCertification.selectByNameAndPassword(req, employeeName, password);
 	}
-	
+
 	public static void logout(HttpServletRequest req) throws IOException {
 		EmployeeCertification.invalidateSession(req);
 	}
 
 	public int getAccountId() {
-
 		return accountId;
-
 	}
 
 	public void setAccountId(int accountId) {
-
 		this.accountId = accountId;
-
 	}
 
 	public String getEmployeeName() {
-
 		return employeeName;
-
 	}
 
 	public void setEmployeeName(String employeeName) {
-
 		if (!employeeName.equals("") &&
 				employeeName != null &&
 				employeeName.length() > 0) {
@@ -94,7 +81,6 @@ public class Employee {
 		} else {
 			this.employeeName = null;
 		}
-
 	}
 
 	public String getPassword() {
@@ -102,7 +88,6 @@ public class Employee {
 	}
 
 	public void setPassword(String password) {
-
 		if (!password.equals("") &&
 				password != null &&
 				password.length() > 8 &&
@@ -111,60 +96,43 @@ public class Employee {
 		} else {
 			this.password = null;
 		}
-
 	}
 
 	public int getDepartmentId() {
-
 		return departmentId;
-
 	}
 
 	public void setDepartmentId(int departmentId) {
-
 		this.departmentId = departmentId;
-
 	}
 
 	public String getDepartment() {
-
 		return department;
-
 	}
 
 	public void setDepartment(String department) {
-
 		if (!department.equals("")
 				&& department != null) {
 			this.department = department;
 		} else {
 			this.department = null;
 		}
-
 	}
 
 	public int getPositionId() {
-
 		return positionId;
-
 	}
 
 	public void setPositionId(int positionId) {
-
 		this.positionId = positionId;
-
 	}
 
 	public String getPosition() {
-
 		return position;
-
 	}
 
 	public void setPosition(String position) {
-
 		this.position = position;
-
 	}
 
 }
