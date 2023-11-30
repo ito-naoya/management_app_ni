@@ -12,18 +12,13 @@
 	String employeeCreateMsg = (String) request.getAttribute("employeeCreateMsg");
 	%>
 
-	<h1>
-		追加完了
-	</h1>
+	<h1>追加完了</h1>
 
 	<h2>
 		<%=employeeCreateMsg%>
 	</h2>
 
-	<a href="top">
-		戻る
-	</a>
+	<a href="top"> 戻る </a>
 
 </body>
-
 </html>
