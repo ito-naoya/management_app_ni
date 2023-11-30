@@ -34,11 +34,7 @@ public class EmployeeLoginController extends HttpServlet {
 			//人事管理アプリにログイン
 			Employee.login(req, employeeName, password);
 
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-
-		} catch (NoSuchAlgorithmException e) {
+		} catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException e) {
 
 			e.printStackTrace();
 
