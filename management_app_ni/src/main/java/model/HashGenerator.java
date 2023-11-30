@@ -7,9 +7,9 @@ public class HashGenerator {
 	// ハッシュ化を行うメソッド
 	public static String generateHash(String val) throws NoSuchAlgorithmException {
 
-		if (val.equals("") || val == null) {
+		if (val.equals("") || val == null)
 			return null;
-		}
+
 		// MessageDigestは、Javaで暗号化およびハッシュ化の機能を提供するクラス
 		// SHA-256というハッシュアルゴリズムを利用することを指定してインスタンス化
 		MessageDigest md = MessageDigest.getInstance("SHA-256");

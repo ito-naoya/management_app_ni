@@ -16,10 +16,12 @@ class TestEmployeeCreate {
 
 	@Test
 	//正しく情報が入力されている場合
-	void testEmployeeCreate() throws ClassNotFoundException, NoSuchAlgorithmException, SQLException {
+	void testEmployeeCreate() throws NoSuchAlgorithmException, ClassNotFoundException, SQLException {
 		Employee employee = new Employee("新規社員", "password", "第1部署", "");
-		String result = EmployeeCreate.employeeCreate(employee);
-		assertEquals(1, result);
+		String result;
+		result = EmployeeCreate.employeeCreate(employee);
+		assertEquals("1件の従業員情報を追加しました。", result);
+
 	}
 
 	@Test
