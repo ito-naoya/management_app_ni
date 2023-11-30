@@ -23,7 +23,7 @@ public class EmployeeCertification {
 			+ "AND "
 			+ "password = ?";
 
-	public static void login(HttpServletRequest req, String employeeName, String password)
+	public static void selectByNameAndPassword(HttpServletRequest req, String employeeName, String password)
 			throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
 
 		//パスワードのハッシュ化
@@ -68,7 +68,7 @@ public class EmployeeCertification {
 
 	}
 
-	public static void logout(HttpServletRequest req) throws IOException {
+	public static void invalidateSession(HttpServletRequest req) throws IOException {
 
 		HttpSession session = req.getSession();
 

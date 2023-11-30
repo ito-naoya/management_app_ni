@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
+import beans.Employee;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.EmployeeCertification;
 
 @WebServlet("/login")
 public class EmployeeLoginController extends HttpServlet {
@@ -32,7 +32,7 @@ public class EmployeeLoginController extends HttpServlet {
 		try {
 
 			//人事管理アプリにログイン
-			EmployeeCertification.login(req, employeeName, password);
+			Employee.login(req, employeeName, password);
 
 		} catch (ClassNotFoundException | SQLException e) {
 

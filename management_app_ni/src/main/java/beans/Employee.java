@@ -1,5 +1,12 @@
 package beans;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+
+import jakarta.servlet.http.HttpServletRequest;
+import model.EmployeeCertification;
+
 public class Employee {
 	private int accountId;
 	private String employeeName;
@@ -49,6 +56,15 @@ public class Employee {
 		setEmployeeName(employeeName);
 		setPassword(password);
 
+	}
+
+	public static void login(HttpServletRequest req, String employeeName, String password)
+			throws NoSuchAlgorithmException, ClassNotFoundException, SQLException {
+		EmployeeCertification.selectByNameAndPassword(req, employeeName, password);
+	}
+	
+	public static void logout(HttpServletRequest req) throws IOException {
+		EmployeeCertification.invalidateSession(req);
 	}
 
 	public int getAccountId() {

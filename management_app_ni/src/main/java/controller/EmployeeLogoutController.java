@@ -2,12 +2,12 @@ package controller;
 
 import java.io.IOException;
 
+import beans.Employee;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.EmployeeCertification;
 
 @WebServlet("/logout")
 public class EmployeeLogoutController extends HttpServlet {
@@ -22,7 +22,7 @@ public class EmployeeLogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		//人事管理アプリからログアウト
-		EmployeeCertification.logout(req);
+		Employee.logout(req);
 
 		//トップページへリダイレクト
 		res.sendRedirect("top");
